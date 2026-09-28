@@ -1,0 +1,1359 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0, viewport-fit=cover"
+  >
+
+  <meta
+    name="theme-color"
+    content="#0B0D12"
+  >
+
+  <meta
+    name="description"
+    content="Sportly AI – Dein Sport. Dein Fortschritt."
+  >
+
+  <title>Sportly AI</title>
+
+  <link rel="manifest" href="manifest.json">
+
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+  <!-- =========================
+       APP
+  ========================== -->
+
+  <div id="app">
+
+    <!-- =========================
+         HEADER
+    ========================== -->
+
+    <header class="top-header">
+
+      <div>
+        <div class="small-label">SPORTLY AI</div>
+
+        <h1>
+          Hey Maximilian 👋
+        </h1>
+
+        <p class="subtitle">
+          Bereit für dein nächstes Training?
+        </p>
+      </div>
+
+      <button
+        class="profile-button"
+        onclick="showPage('profile')"
+        aria-label="Profil öffnen"
+      >
+        M
+      </button>
+
+    </header>
+
+
+    <!-- =========================
+         MAIN CONTENT
+    ========================== -->
+
+    <main id="main-content">
+
+
+      <!-- =========================
+           HOME
+      ========================== -->
+
+      <section
+        id="page-home"
+        class="page active"
+      >
+
+        <!-- Tagesübersicht -->
+
+        <div class="section-title-row">
+
+          <div>
+            <h2>Heute</h2>
+            <span class="section-subtitle">
+              Deine Aktivität
+            </span>
+          </div>
+
+          <span class="date-badge" id="current-date">
+            Heute
+          </span>
+
+        </div>
+
+
+        <div class="stats-grid">
+
+          <div class="stat-card">
+
+            <div class="stat-icon blue">
+              🏋️
+            </div>
+
+            <div class="stat-value" id="today-training">
+              0
+            </div>
+
+            <div class="stat-label">
+              Trainings
+            </div>
+
+          </div>
+
+
+          <div class="stat-card">
+
+            <div class="stat-icon green">
+              ⏱️
+            </div>
+
+            <div class="stat-value">
+              <span id="today-minutes">0</span>
+              <small>min</small>
+            </div>
+
+            <div class="stat-label">
+              Trainingszeit
+            </div>
+
+          </div>
+
+
+          <div class="stat-card">
+
+            <div class="stat-icon orange">
+              🔥
+            </div>
+
+            <div class="stat-value">
+              <span id="streak">0</span>
+            </div>
+
+            <div class="stat-label">
+              Tage Streak
+            </div>
+
+          </div>
+
+
+          <div class="stat-card">
+
+            <div class="stat-icon purple">
+              ⭐
+            </div>
+
+            <div class="stat-value">
+              <span id="xp">0</span>
+            </div>
+
+            <div class="stat-label">
+              XP
+            </div>
+
+          </div>
+
+        </div>
+
+
+        <!-- Wochenfortschritt -->
+
+        <div class="card weekly-card">
+
+          <div class="card-header">
+
+            <div>
+              <h3>Diese Woche</h3>
+              <p>
+                Deine Trainingsaktivität
+              </p>
+            </div>
+
+            <div class="week-total">
+              <strong id="week-training">
+                0
+              </strong>
+
+              <span>
+                Trainings
+              </span>
+            </div>
+
+          </div>
+
+
+          <div class="week-chart">
+
+            <div class="day-column">
+              <div class="bar" id="bar-mon"></div>
+              <span>Mo</span>
+            </div>
+
+            <div class="day-column">
+              <div class="bar" id="bar-tue"></div>
+              <span>Di</span>
+            </div>
+
+            <div class="day-column">
+              <div class="bar" id="bar-wed"></div>
+              <span>Mi</span>
+            </div>
+
+            <div class="day-column">
+              <div class="bar" id="bar-thu"></div>
+              <span>Do</span>
+            </div>
+
+            <div class="day-column">
+              <div class="bar" id="bar-fri"></div>
+              <span>Fr</span>
+            </div>
+
+            <div class="day-column">
+              <div class="bar" id="bar-sat"></div>
+              <span>Sa</span>
+            </div>
+
+            <div class="day-column">
+              <div class="bar" id="bar-sun"></div>
+              <span>So</span>
+            </div>
+
+          </div>
+
+        </div>
+
+
+        <!-- Schnellaktionen -->
+
+        <div class="section-title-row">
+
+          <div>
+            <h2>Schnellaktionen</h2>
+          </div>
+
+        </div>
+
+
+        <div class="quick-actions">
+
+          <button
+            class="action-card food-action"
+            onclick="showPage('food')"
+          >
+
+            <span class="action-icon">
+              📸
+            </span>
+
+            <span>
+              <strong>Essen</strong>
+              <small>Scanner</small>
+            </span>
+
+          </button>
+
+
+          <button
+            class="action-card"
+            onclick="showPage('training')"
+          >
+
+            <span class="action-icon">
+              🏋️
+            </span>
+
+            <span>
+              <strong>Training</strong>
+              <small>Starten</small>
+            </span>
+
+          </button>
+
+
+          <button
+            class="action-card"
+            onclick="openAddTraining()"
+          >
+
+            <span class="action-icon">
+              ➕
+            </span>
+
+            <span>
+              <strong>Aktivität</strong>
+              <small>Hinzufügen</small>
+            </span>
+
+          </button>
+
+
+          <button
+            class="action-card"
+            onclick="showPage('progress')"
+          >
+
+            <span class="action-icon">
+              📊
+            </span>
+
+            <span>
+              <strong>Fortschritt</strong>
+              <small>Ansehen</small>
+            </span>
+
+          </button>
+
+        </div>
+
+
+        <!-- Letztes Training -->
+
+        <div class="section-title-row">
+
+          <div>
+            <h2>Letzte Aktivität</h2>
+          </div>
+
+        </div>
+
+
+        <div id="recent-training">
+
+          <div class="empty-state">
+
+            <div class="empty-icon">
+              🏃
+            </div>
+
+            <h3>Noch kein Training</h3>
+
+            <p>
+              Starte dein erstes Training und
+              dein Fortschritt erscheint hier.
+            </p>
+
+            <button
+              class="primary-button"
+              onclick="showPage('training')"
+            >
+              Training starten
+            </button>
+
+          </div>
+
+        </div>
+
+      </section>
+
+
+
+      <!-- =========================
+           FOOD
+      ========================== -->
+
+      <section
+        id="page-food"
+        class="page"
+      >
+
+        <div class="page-heading">
+
+          <span class="page-icon">
+            📸
+          </span>
+
+          <div>
+            <h1>Food Scanner</h1>
+
+            <p>
+              Analysiere dein Essen
+            </p>
+          </div>
+
+        </div>
+
+
+        <div class="food-scanner-card">
+
+          <div class="camera-placeholder">
+
+            <div class="camera-icon">
+              📷
+            </div>
+
+            <h2>
+              Essen fotografieren
+            </h2>
+
+            <p>
+              In einer späteren Version analysiert
+              Sportly AI dein Essen automatisch.
+            </p>
+
+            <button
+              class="primary-button"
+              onclick="simulateFoodScan()"
+            >
+              📸 Foto analysieren
+            </button>
+
+          </div>
+
+        </div>
+
+
+        <div
+          id="food-result"
+          class="card hidden"
+        >
+
+          <div class="card-header">
+
+            <div>
+              <h3>🤖 Sportly AI</h3>
+
+              <p>
+                Geschätzte Mahlzeit
+              </p>
+            </div>
+
+          </div>
+
+
+          <div class="food-result-content">
+
+            <div class="food-name">
+              🍝 Pasta mit Hähnchen
+            </div>
+
+
+            <div class="nutrition-grid">
+
+              <div>
+                <strong>
+                  ~650
+                </strong>
+
+                <span>
+                  kcal
+                </span>
+              </div>
+
+
+              <div>
+                <strong>
+                  ~35 g
+                </strong>
+
+                <span>
+                  Eiweiß
+                </span>
+              </div>
+
+
+              <div>
+                <strong>
+                  ~75 g
+                </strong>
+
+                <span>
+                  Kohlenhydrate
+                </span>
+              </div>
+
+
+              <div>
+                <strong>
+                  ~20 g
+                </strong>
+
+                <span>
+                  Fett
+                </span>
+              </div>
+
+            </div>
+
+
+            <div class="warning-box">
+
+              ⚠️
+              <span>
+                Diese Werte sind nur eine grobe Schätzung
+                und können je nach Portion und Zubereitung
+                deutlich abweichen.
+              </span>
+
+            </div>
+
+
+            <button
+              class="secondary-button"
+              onclick="saveFood()"
+            >
+              ✓ Mahlzeit speichern
+            </button>
+
+          </div>
+
+        </div>
+
+
+        <div class="info-card">
+
+          <span>💡</span>
+
+          <p>
+            Der echte KI-Food-Scanner kommt in einer
+            späteren Version.
+          </p>
+
+        </div>
+
+      </section>
+
+
+
+      <!-- =========================
+           TRAINING
+      ========================== -->
+
+      <section
+        id="page-training"
+        class="page"
+      >
+
+        <div class="page-heading">
+
+          <span class="page-icon">
+            🏋️
+          </span>
+
+          <div>
+            <h1>Training</h1>
+
+            <p>
+              Wähle deine Sportart
+            </p>
+          </div>
+
+        </div>
+
+
+        <div class="sport-grid">
+
+
+          <button
+            class="sport-card football"
+            onclick="selectSport('Fußball')"
+          >
+
+            <span>
+              ⚽
+            </span>
+
+            <strong>
+              Fußball
+            </strong>
+
+            <small>
+              Training & Spiele
+            </small>
+
+          </button>
+
+
+          <button
+            class="sport-card swimming"
+            onclick="selectSport('Schwimmen')"
+          >
+
+            <span>
+              🏊
+            </span>
+
+            <strong>
+              Schwimmen
+            </strong>
+
+            <small>
+              Strecke & Zeit
+            </small>
+
+          </button>
+
+
+          <button
+            class="sport-card running"
+            onclick="selectSport('Laufen')"
+          >
+
+            <span>
+              🏃
+            </span>
+
+            <strong>
+              Laufen
+            </strong>
+
+            <small>
+              Distanz & Pace
+            </small>
+
+          </button>
+
+
+          <button
+            class="sport-card workout"
+            onclick="selectSport('Workout')"
+          >
+
+            <span>
+              💪
+            </span>
+
+            <strong>
+              Workout
+            </strong>
+
+            <small>
+              Kraft & Fitness
+            </small>
+
+          </button>
+
+        </div>
+
+
+        <div
+          id="training-form"
+          class="card hidden"
+        >
+
+          <div class="card-header">
+
+            <div>
+
+              <h3 id="selected-sport">
+                Training
+              </h3>
+
+              <p>
+                Einheit eintragen
+              </p>
+
+            </div>
+
+          </div>
+
+
+          <label>
+            Dauer in Minuten
+          </label>
+
+          <input
+            id="training-duration"
+            type="number"
+            min="1"
+            max="600"
+            placeholder="z. B. 60"
+          >
+
+
+          <label>
+            Notiz
+          </label>
+
+          <textarea
+            id="training-note"
+            placeholder="Wie war dein Training?"
+            rows="4"
+          ></textarea>
+
+
+          <button
+            class="primary-button full-width"
+            onclick="saveTraining()"
+          >
+            ✓ Training speichern
+          </button>
+
+        </div>
+
+
+        <div class="info-card">
+
+          <span>⚡</span>
+
+          <p>
+            Jede gespeicherte Trainingseinheit bringt
+            dir XP und wird in deinem Fortschritt angezeigt.
+          </p>
+
+        </div>
+
+      </section>
+
+
+
+      <!-- =========================
+           PROGRESS
+      ========================== -->
+
+      <section
+        id="page-progress"
+        class="page"
+      >
+
+        <div class="page-heading">
+
+          <span class="page-icon">
+            📊
+          </span>
+
+          <div>
+
+            <h1>Fortschritt</h1>
+
+            <p>
+              Deine persönliche Entwicklung
+            </p>
+
+          </div>
+
+        </div>
+
+
+        <div class="level-card">
+
+          <div class="level-top">
+
+            <div>
+
+              <span class="level-label">
+                DEIN LEVEL
+              </span>
+
+              <strong id="level-number">
+                1
+              </strong>
+
+            </div>
+
+
+            <div class="xp-display">
+
+              <strong id="progress-xp">
+                0 XP
+              </strong>
+
+              <span>
+                Gesamt
+              </span>
+
+            </div>
+
+          </div>
+
+
+          <div class="progress-track">
+
+            <div
+              class="progress-fill"
+              id="level-progress"
+            ></div>
+
+          </div>
+
+
+          <p id="level-text">
+            100 XP bis Level 2
+          </p>
+
+        </div>
+
+
+        <div class="stats-grid">
+
+
+          <div class="stat-card">
+
+            <div class="stat-icon blue">
+              🏋️
+            </div>
+
+            <div
+              class="stat-value"
+              id="total-training"
+            >
+              0
+            </div>
+
+            <div class="stat-label">
+              Trainings
+            </div>
+
+          </div>
+
+
+          <div class="stat-card">
+
+            <div class="stat-icon green">
+              ⏱️
+            </div>
+
+            <div class="stat-value">
+
+              <span id="total-minutes">
+                0
+              </span>
+
+              <small>
+                min
+              </small>
+
+            </div>
+
+            <div class="stat-label">
+              Sportzeit
+            </div>
+
+          </div>
+
+        </div>
+
+
+        <div class="section-title-row">
+
+          <div>
+
+            <h2>
+              Persönliche Rekorde
+            </h2>
+
+          </div>
+
+        </div>
+
+
+        <div class="records-grid">
+
+          <div class="record-card">
+
+            <span>
+              ⚽
+            </span>
+
+            <strong>
+              Fußball
+            </strong>
+
+            <small>
+              Deine Daten
+            </small>
+
+          </div>
+
+
+          <div class="record-card">
+
+            <span>
+              🏊
+            </span>
+
+            <strong>
+              Schwimmen
+            </strong>
+
+            <small>
+              Deine Daten
+            </small>
+
+          </div>
+
+
+          <div class="record-card">
+
+            <span>
+              🏃
+            </span>
+
+            <strong>
+              Laufen
+            </strong>
+
+            <small>
+              Deine Daten
+            </small>
+
+          </div>
+
+
+          <div class="record-card">
+
+            <span>
+              💪
+            </span>
+
+            <strong>
+              Workout
+            </strong>
+
+            <small>
+              Deine Daten
+            </small>
+
+          </div>
+
+        </div>
+
+
+        <div class="section-title-row">
+
+          <div>
+
+            <h2>
+              🏆 Abzeichen
+            </h2>
+
+          </div>
+
+        </div>
+
+
+        <div class="badges">
+
+          <div class="badge locked">
+
+            <span>
+              🏃
+            </span>
+
+            <strong>
+              Starter
+            </strong>
+
+            <small>
+              Erstes Training
+            </small>
+
+          </div>
+
+
+          <div class="badge locked">
+
+            <span>
+              🔥
+            </span>
+
+            <strong>
+              Streak
+            </strong>
+
+            <small>
+              7 Tage
+            </small>
+
+          </div>
+
+
+          <div class="badge locked">
+
+            <span>
+              🏆
+            </span>
+
+            <strong>
+              Rekord
+            </strong>
+
+            <small>
+              Bestleistung
+            </small>
+
+          </div>
+
+        </div>
+
+      </section>
+
+
+
+      <!-- =========================
+           PROFILE
+      ========================== -->
+
+      <section
+        id="page-profile"
+        class="page"
+      >
+
+        <div class="profile-header">
+
+          <div class="large-avatar">
+            M
+          </div>
+
+          <div>
+
+            <h1>
+              Maximilian
+            </h1>
+
+            <p>
+              Sportly AI Athlete
+            </p>
+
+          </div>
+
+        </div>
+
+
+        <div class="card">
+
+          <div class="card-header">
+
+            <div>
+
+              <h3>
+                Meine Sportarten
+              </h3>
+
+              <p>
+                Deine Auswahl
+              </p>
+
+            </div>
+
+          </div>
+
+
+          <div class="sport-tags">
+
+            <span>
+              ⚽ Fußball
+            </span>
+
+            <span>
+              🏊 Schwimmen
+            </span>
+
+            <span>
+              💪 Fitness
+            </span>
+
+            <span>
+              🏃 Laufen
+            </span>
+
+          </div>
+
+        </div>
+
+
+        <div class="profile-menu">
+
+          <button onclick="showPage('progress')">
+
+            <span>📊</span>
+
+            <div>
+              <strong>
+                Mein Fortschritt
+              </strong>
+
+              <small>
+                Statistiken & Rekorde
+              </small>
+            </div>
+
+            <b>›</b>
+
+          </button>
+
+
+          <button onclick="showSettings()">
+
+            <span>⚙️</span>
+
+            <div>
+              <strong>
+                Einstellungen
+              </strong>
+
+              <small>
+                App konfigurieren
+              </small>
+            </div>
+
+            <b>›</b>
+
+          </button>
+
+
+          <button onclick="resetApp()">
+
+            <span>🗑️</span>
+
+            <div>
+              <strong>
+                Daten zurücksetzen
+              </strong>
+
+              <small>
+                Lokale Daten löschen
+              </small>
+            </div>
+
+            <b>›</b>
+
+          </button>
+
+        </div>
+
+
+        <div class="app-version">
+
+          Sportly AI
+
+          <span>
+            V1.0
+          </span>
+
+        </div>
+
+      </section>
+
+    </main>
+
+
+    <!-- =========================
+         BOTTOM NAVIGATION
+    ========================== -->
+
+    <nav class="bottom-nav">
+
+      <button
+        class="nav-item active"
+        data-page="home"
+        onclick="showPage('home')"
+      >
+
+        <span>
+          🏠
+        </span>
+
+        <small>
+          Home
+        </small>
+
+      </button>
+
+
+      <button
+        class="nav-item"
+        data-page="food"
+        onclick="showPage('food')"
+      >
+
+        <span>
+          📸
+        </span>
+
+        <small>
+          Essen
+        </small>
+
+      </button>
+
+
+      <button
+        class="nav-item center-nav"
+        data-page="training"
+        onclick="showPage('training')"
+      >
+
+        <span>
+          +
+        </span>
+
+        <small>
+          Training
+        </small>
+
+      </button>
+
+
+      <button
+        class="nav-item"
+        data-page="progress"
+        onclick="showPage('progress')"
+      >
+
+        <span>
+          📊
+        </span>
+
+        <small>
+          Fortschritt
+        </small>
+
+      </button>
+
+
+      <button
+        class="nav-item"
+        data-page="profile"
+        onclick="showPage('profile')"
+      >
+
+        <span>
+          👤
+        </span>
+
+        <small>
+          Profil
+        </small>
+
+      </button>
+
+    </nav>
+
+
+    <!-- =========================
+         ADD TRAINING MODAL
+    ========================== -->
+
+    <div
+      id="training-modal"
+      class="modal hidden"
+    >
+
+      <div
+        class="modal-overlay"
+        onclick="closeModal()"
+      ></div>
+
+
+      <div class="modal-content">
+
+        <div class="modal-header">
+
+          <div>
+
+            <h2>
+              Aktivität hinzufügen
+            </h2>
+
+            <p>
+              Was hast du heute gemacht?
+            </p>
+
+          </div>
+
+          <button
+            class="close-button"
+            onclick="closeModal()"
+          >
+            ×
+          </button>
+
+        </div>
+
+
+        <div class="modal-sports">
+
+          <button onclick="chooseModalSport('⚽ Fußball')">
+            ⚽ Fußball
+          </button>
+
+          <button onclick="chooseModalSport('🏊 Schwimmen')">
+            🏊 Schwimmen
+          </button>
+
+          <button onclick="chooseModalSport('🏃 Laufen')">
+            🏃 Laufen
+          </button>
+
+          <button onclick="chooseModalSport('💪 Workout')">
+            💪 Workout
+          </button>
+
+        </div>
+
+
+        <div
+          id="modal-duration-container"
+          class="hidden"
+        >
+
+          <label>
+            Dauer in Minuten
+          </label>
+
+          <input
+            id="modal-duration"
+            type="number"
+            min="1"
+            max="600"
+            placeholder="z. B. 60"
+          >
+
+
+          <button
+            class="primary-button full-width"
+            onclick="saveModalTraining()"
+          >
+            Speichern
+          </button>
+
+        </div>
+
+      </div>
+
+    </div>
+
+
+    <!-- =========================
+         TOAST
+    ========================== -->
+
+    <div
+      id="toast"
+      class="toast"
+    >
+      <span id="toast-icon">
+        ✓
+      </span>
+
+      <span id="toast-message">
+        Gespeichert
+      </span>
+
+    </div>
+
+  </div>
+
+
+  <!-- =========================
+       JAVASCRIPT
+  ========================== -->
+
+  <script src="app.js"></script>
+
+</body>
+</html>
